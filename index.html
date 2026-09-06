@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HireAI — Resume Screening</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">H</div><div><strong>HireAI</strong><span>AI Recruitment</span></div></div>
+    <nav>
+      <button class="nav-item active" data-page="dashboard">▣ <span>Dashboard</span></button>
+      <button class="nav-item" data-page="screen">✦ <span>Screen Resume</span></button>
+      <button class="nav-item" data-page="candidates">♙ <span>Candidates</span></button>
+      <button class="nav-item" data-page="analytics">◔ <span>Analytics</span></button>
+      <button class="nav-item" data-page="model">◈ <span>AI Model</span></button>
+    </nav>
+    <div class="system-status"><span class="dot"></span><div><strong>System Online</strong><small>Model serving active</small></div></div>
+    <a class="docs-link" href="/docs" target="_blank">API Documentation ↗</a>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><p class="eyebrow">INTELLIGENT SCREENING SYSTEM</p><h1 id="page-title">Dashboard</h1></div>
+      <div class="top-status"><span class="dot"></span> AI Engine Online</div>
+    </header>
+
+    <section id="dashboard" class="page active-page">
+      <div class="hero"><div><span class="badge">AI-POWERED</span><h2>Make hiring decisions faster.</h2><p>Analyze resume-to-job fit, understand confidence, and route uncertain candidates for human review.</p></div><button class="primary" data-go="screen">+ Screen a Resume</button></div>
+      <div class="cards">
+        <div class="stat"><span>Total Screened</span><strong id="total">0</strong><small>candidates analyzed</small></div>
+        <div class="stat"><span>Shortlisted</span><strong id="shortlisted">0</strong><small>recommended by AI</small></div>
+        <div class="stat"><span>Rejected</span><strong id="rejected">0</strong><small>not a strong match</small></div>
+        <div class="stat"><span>Needs Review</span><strong id="review">0</strong><small>low confidence cases</small></div>
+      </div>
+      <div class="grid-2">
+        <div class="panel"><div class="panel-head"><div><h3>System Performance</h3><p>Current screening statistics</p></div></div><div class="metric-row"><span>Average Fit Score</span><strong id="avg-fit">0%</strong></div><div class="progress"><i id="fit-bar"></i></div><div class="metric-row"><span>Average AI Confidence</span><strong id="avg-conf">0%</strong></div><div class="progress"><i id="conf-bar"></i></div></div>
+        <div class="panel"><div class="panel-head"><div><h3>How the system works</h3><p>End-to-end AI pipeline</p></div></div><div class="pipeline"><span>Resume</span><b>→</b><span>TF-IDF</span><b>→</b><span>Similarity</span><b>→</b><span>ML Decision</span></div><div class="pipeline second"><span>Confidence</span><b>→</b><span>Auto Decision</span><b>/</b><span>Human Review</span></div></div>
+      </div>
+    </section>
+
+    <section id="screen" class="page">
+      <div class="section-intro"><span class="badge">SCREENING ENGINE</span><h2>Analyze a candidate</h2><p>Enter the resume and target job description. HireAI will calculate fit, skill overlap, decision, and confidence.</p></div>
+      <div class="form-grid"><div class="panel"><label>Candidate name</label><input id="candidate-name" placeholder="e.g. Rahul Sharma" /><label>Resume</label><textarea id="resume" placeholder="Paste the candidate's resume text here..."></textarea></div><div class="panel"><label>Job description</label><textarea id="job" placeholder="Paste the target job description here..."></textarea><button id="analyze" class="primary full">✦ Analyze Candidate</button></div></div>
+      <div id="result" class="result hidden"></div>
+    </section>
+
+    <section id="candidates" class="page">
+      <div class="section-intro"><span class="badge">CANDIDATE HISTORY</span><h2>Screened candidates</h2><p>Every analysis is recorded so the system can be monitored and reviewed.</p></div>
+      <div class="panel table-panel"><table><thead><tr><th>Candidate</th><th>Fit</th><th>Confidence</th><th>Decision</th><th>Status</th><th>Time</th></tr></thead><tbody id="candidate-table"></tbody></table></div>
+    </section>
+
+    <section id="analytics" class="page">
+      <div class="section-intro"><span class="badge">SYSTEM ANALYTICS</span><h2>Screening analytics</h2><p>Monitor how the AI system is behaving across screened candidates.</p></div>
+      <div class="cards"><div class="stat"><span>Average Fit</span><strong id="a-fit">0%</strong></div><div class="stat"><span>Average Confidence</span><strong id="a-conf">0%</strong></div><div class="stat"><span>Human Reviewed</span><strong id="a-reviewed">0</strong></div><div class="stat"><span>Review Threshold</span><strong>80%</strong></div></div>
+      <div class="panel"><h3>Decision distribution</h3><div class="bars"><div><span>Shortlisted</span><i id="bar-short"></i></div><div><span>Rejected</span><i id="bar-reject"></i></div><div><span>Human Review</span><i id="bar-review"></i></div></div></div>
+    </section>
+
+    <section id="model" class="page">
+      <div class="section-intro"><span class="badge">MODEL SERVING</span><h2>AI model pipeline</h2><p>This page explains the machine-learning component used by the system.</p></div>
+      <div class="model-flow"><div>Resume + Job Description</div><b>↓</b><div>TF-IDF Vectorization</div><b>↓</b><div>Cosine Similarity + Skill Overlap</div><b>↓</b><div>StandardScaler</div><b>↓</b><div class="highlight">Logistic Regression → SHORTLIST / REJECT</div><b>↓</b><div>Confidence → Automatic Decision / Human Review</div></div>
+      <div class="grid-2"><div class="panel"><h3>Why this model?</h3><p>TF-IDF keeps the project lightweight, offline-friendly, fast to train, and easy to explain in a viva.</p></div><div class="panel"><h3>Future improvement</h3><p>Replace TF-IDF with sentence embeddings to improve semantic matching between related terms and phrases.</p></div></div>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
